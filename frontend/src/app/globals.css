@@ -1,0 +1,91 @@
+@import "tailwindcss";
+@import "../../styles/tokens.css";
+
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-warning: var(--color-warning);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  /* Subdued noise texture for premium feel */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Ambient Background Mesh */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+.ambient-gradient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.15; /* Subdued for cinematic dark mode */
+  animation: mesh-rotate 25s ease-in-out infinite alternate;
+}
+
+.gradient-1 {
+  background: var(--color-primary); /* Indigo */
+  width: 800px;
+  height: 800px;
+  top: -300px;
+  left: -200px;
+  animation-duration: 35s;
+}
+
+.gradient-2 {
+  background: var(--color-secondary); /* Cyan */
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: -100px;
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+
+.gradient-3 {
+  background: var(--color-warning); /* Magenta */
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  animation-duration: 45s;
+}
+
+/* Cinematic Utilities */
+.text-gradient-intelligence {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}

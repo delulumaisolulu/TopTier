@@ -1,0 +1,119 @@
+/* Design Tokens for TopTier - Cinematic Spatial UI */
+
+/* Colors */
+/* Functional Colors - Light Mode Base */
+:root {
+  /* Brand/Intelligence Colors (Neon Cyan & Electric Indigo) */
+  --color-primary: #6366F1; /* Indigo 500 */
+  --color-primary-light: #818CF8;
+  --color-primary-dark: #4F46E5;
+  
+  --color-secondary: #06B6D4; /* Cyan 500 */
+  --color-secondary-light: #22D3EE;
+  --color-secondary-dark: #0891B2;
+
+  /* Accent/Success/Streak Colors (Warm Gold) */
+  --color-accent: #F59E0B; /* Amber 500 */
+  --color-accent-light: #FBBF24;
+  --color-accent-dark: #D97706;
+
+  /* Warning/Urgency/Energy Colors (Magenta) */
+  --color-warning: #D946EF; /* Fuchsia 500 */
+  --color-warning-light: #E879F9;
+  --color-warning-dark: #C026D3;
+
+  /* Light Mode Functional Colors */
+  --color-background: #F0F4F8;
+  --color-foreground: #0F172A;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #F1F5F9;
+
+  /* Glassmorphism - Light Mode: translucent tinted white so glow bleeds through */
+  --color-glass-bg: rgba(255, 255, 255, 0.35);
+  --color-glass-bg-hover: rgba(255, 255, 255, 0.5);
+  --color-glass-border: rgba(255, 255, 255, 0.6);
+
+  /* Light mode shadows: soft elevated feel */
+  --shadow-spatial-base: 0 4px 32px -4px rgba(99, 102, 241, 0.08), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-spatial-hover: 0 12px 48px -8px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0,0,0,0.06);
+  
+  color-scheme: light;
+}
+
+/* Functional Colors - Dark Mode Override */
+.dark {
+  --color-background: #030305;
+  --color-foreground: #FAFAFA;
+  --color-surface: #0A0A0E;
+  --color-surface-elevated: #121218;
+
+  /* Glassmorphism - Dark Mode: subtle frost on dark */
+  --color-glass-bg: rgba(255, 255, 255, 0.02);
+  --color-glass-bg-hover: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+
+  /* Dark mode shadows: deep cinematic */
+  --shadow-spatial-base: 0 4px 24px -1px rgba(0,0,0,0.4);
+  --shadow-spatial-hover: 0 12px 48px -4px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  
+  color-scheme: dark;
+}
+
+/* Spacing System */
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+/* Typography Scale */
+:root {
+  --font-size-display: 32px;
+  --font-size-heading: 24px;
+  --font-size-subheading: 18px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-micro: 12px;
+}
+
+/* Glassmorphism & Depth Tokens */
+:root {
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 24px;
+  --glass-blur-lg: 80px;
+
+  /* Translucent Surfaces */
+  --surface-opacity-base: 0.02;
+  --surface-opacity-hover: 0.05;
+}
+
+/* Cinematic Shadows — now defined per-mode above */
+
+/* Animation Keyframes for Ambient Depth */
+@keyframes mesh-rotate {
+  from { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Global Utility Classes */
+.glass-panel {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(var(--glass-blur-md));
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-spatial-base);
+}
+
+.glass-panel:hover {
+  background-color: var(--color-glass-bg-hover);
+  box-shadow: var(--shadow-spatial-hover);
+}

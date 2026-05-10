@@ -1,73 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SpatialCard } from "@/components/ui/spatial-card";
-import { fadeUpSpatial } from "@/lib/motion";
-import { BrainCircuit, Zap, BookOpen } from "lucide-react";
-import { AnimatedIcon } from "@/components/ui/animated-icon";
+import { fadeUp } from "@/lib/motion";
+import { Terminal, Zap, BookOpen, Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const insights = [
-  {
-    id: 1,
-    title: "Memory Decay Detected",
-    description: "Your retention for 'Neural Networks' is dropping. Review recommended.",
-    icon: BrainCircuit,
-    color: "var(--color-warning)", // Magenta for urgency
-    glowColor: "rgba(217, 70, 239, 0.25)",
-    actionText: "Review Now",
-  },
-  {
-    id: 2,
-    title: "Learning Pattern Optimized",
-    description: "You perform 24% better during morning sessions. Adjusted schedule.",
-    icon: Zap,
-    color: "var(--color-accent)", // Gold for success/streak
-    glowColor: "rgba(245, 158, 11, 0.25)",
-    actionText: "View Schedule",
-  },
-  {
-    id: 3,
-    title: "New Material Correlated",
-    description: "Chapter 4 directly relates to your recent project. Connect concepts.",
-    icon: BookOpen,
-    color: "var(--color-secondary)", // Cyan for intelligence
-    glowColor: "rgba(6, 182, 212, 0.25)",
-    actionText: "Explore Concepts",
-  }
+  { icon: Zap, color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-500/10 dark:bg-amber-400/10", border: "border-amber-500/20 dark:border-amber-400/20", title: "Speed Optimization", text: "Your numerical solving speed improved 18% in the last 3 days." },
+  { icon: BookOpen, color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/10 dark:bg-purple-400/10", border: "border-purple-500/20 dark:border-purple-400/20", title: "Probability Alert", text: "Unit 5 has highest exam appearance probability (82%) based on past 5 years." },
+  { icon: Clock, color: "text-indigo-600 dark:text-indigo-400", bg: "bg-indigo-500/10 dark:bg-indigo-400/10", border: "border-indigo-500/20 dark:border-indigo-400/20", title: "Retention Warning", text: "Revision for 'CPU Scheduling' recommended within next 14 hours." },
 ];
 
 export function AiInsights() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
-      {insights.map((insight) => (
-        <motion.div key={insight.id} variants={fadeUpSpatial} className="h-full">
-          <SpatialCard className="h-full group cursor-pointer" glowColor={insight.glowColor}>
-            <div className="flex flex-col h-full gap-4">
-              <div className="flex items-center justify-between">
-                <AnimatedIcon icon={insight.icon} glowColor={insight.color} />
-              </div>
-              
-              <div className="flex-grow">
-                <h4 className="text-[var(--color-foreground)] font-medium mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--color-foreground)] group-hover:to-zinc-500 transition-all duration-300">
-                  {insight.title}
-                </h4>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  {insight.description}
-                </p>
-              </div>
+    <motion.div variants={fadeUp} className="glass-panel rounded-3xl p-6 relative flex flex-col h-full overflow-hidden group">
+      <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+        <Terminal size={150} />
+      </div>
 
-              <div className="mt-auto pt-4 border-t border-zinc-200 dark:border-white/[0.05]">
-                <span 
-                  className="text-xs font-semibold uppercase tracking-widest transition-colors duration-300"
-                  style={{ color: insight.color }}
-                >
-                  {insight.actionText} &rarr;
-                </span>
-              </div>
+      <div className="flex items-center justify-between mb-6 relative z-10">
+        <div>
+          <h3 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
+            <Terminal size={18} className="text-zinc-500 dark:text-zinc-400" />
+            AI Insight Terminal
+          </h3>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live Analysis Feed
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1 space-y-4 relative z-10">
+        {insights.map((insight, i) => (
+          <div key={i} className="flex gap-4 items-start group/item">
+            <div className={cn("p-2 rounded-xl border mt-0.5 shrink-0 transition-colors", insight.bg, insight.color, insight.border, "group-hover/item:bg-opacity-20")}>
+              <insight.icon size={14} />
             </div>
-          </SpatialCard>
-        </motion.div>
-      ))}
-    </div>
+            <div>
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-200 mb-0.5">{insight.title}</h4>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{insight.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }

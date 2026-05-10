@@ -37,6 +37,8 @@ export const fadeUpSpatial: Variants = {
   exit: { opacity: 0, y: -4, filter: "blur(2px)", transition: { duration: 0.2 } },
 };
 
+export const fadeUp = fadeUpSpatial;
+
 export const scaleSpatial: Variants = {
   initial: { opacity: 0, scale: 0.96, filter: "blur(8px)" },
   animate: { opacity: 1, scale: 1, filter: "blur(0px)", transition: springSpatial },

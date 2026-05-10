@@ -50,7 +50,7 @@ export async function updateSession(request: NextRequest) {
   const isPublicRoute = publicRoutes.includes(pathname);
 
   // Protected route patterns
-  const protectedPrefixes = ["/dashboard", "/upload", "/analytics", "/onboarding"];
+  const protectedPrefixes = ["/dashboard", "/upload", "/test", "/analytics", "/onboarding"];
   const isProtectedRoute = protectedPrefixes.some((prefix) =>
     pathname.startsWith(prefix)
   );
